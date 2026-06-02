@@ -12,25 +12,36 @@
 
     <style>
         /*
-         * Task 1: Embedded <style> tag for page-specific overrides
+         * Task 1: Embedded <style> tag in the <head> to define body background
          * Task 2: Clean, readable CSS with descriptive comments
          */
-
-        /* Inline welcome section highlight */
-        #home h1 {
-            /* Task 1: Inline style alternative shown here as embedded */
-            /* Task 4: Gradient header background */
-            background: linear-gradient(135deg, #06b6d4 0%, #10b981 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        body {
+            /* Embedded background color override */
+            background-color: #090d16;
         }
 
-        /* Task 3: ID selector for main registration form area */
-        #register {
-            background-color: rgba(6, 182, 212, 0.03);
-            border-radius: 16px;
-            padding: 10px 0 20px;
+        /* Task 3: ID selector #mainHeader for the welcome banner (blue background) */
+        #mainHeader {
+            background-color: #1e3a8a; /* Blue background */
+            color: #ffffff;
+            padding: 16px 20px;
+            margin: 20px auto;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 600px;
+        }
+
+        /* Highlight class for visual emphasis */
+        .highlight {
+            color: #10b981;
+            font-weight: 600;
+            background-color: rgba(16, 185, 129, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
         }
 
         /* Fee display paragraph */
@@ -55,6 +66,29 @@
             color: #10b981;
             font-weight: bold;
         }
+
+        /* Overlay modal style for enlarged image */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 12px;
+            border: 3px solid #06b6d4;
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.5);
+        }
     </style>
 </head>
 
@@ -65,7 +99,10 @@
         <!-- Task 6: Nav links styled via external CSS pseudo-classes -->
         <a href="#home">Home</a>
         <a href="#events">Events</a>
+        <a href="#gallery-section">Gallery</a>
         <a href="#bulletin">Bulletin</a>
+        <a href="#promo">Promo</a>
+        <a href="#register">Register</a>
         <a href="#contact">Contact</a>
         <a href="help.html" target="_blank">Help</a>
     </nav>
@@ -74,53 +111,83 @@
 
         <!-- Home Section -->
         <section id="home">
-            <!-- Task 1: inline style to make this heading teal (as required) -->
-            <h1 style="color: #06b6d4;">Welcome to Community Portal</h1>
+            <!-- Task 1: Inline style to make this heading red (strictly required) -->
+            <h1 style="color: red; text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);">Welcome to Community Portal</h1>
+            <p style="text-align: center;">Your ultimate destination for <span class="highlight">local events</span> and city happenings.</p>
         </section>
 
         <!-- Events Section -->
         <!-- Task 3: ID selector on this section -->
         <section id="events">
-
             <h2>Community Events</h2>
+            <div id="filter-wrapper"></div>
+            <!-- Event cards generated dynamically via JavaScript -->
+        </section>
 
-            <!-- Task 7: Styled table with zebra striping -->
+        <!-- Image Gallery for Community Events Section -->
+        <section id="gallery-section">
+            <h2>Past Events Gallery</h2>
+            <p style="margin-bottom: 15px; font-size: 0.9rem; color: #94a3b8; text-align: center;">
+                💡 <span class="highlight">Double-click</span> on any event photo to enlarge it!
+            </p>
+
+            <!-- Task 4: 2 rows and 3 columns table of <img> tags with captions -->
             <table>
-                <thead>
-                    <tr>
-                        <th>Music</th>
-                        <th>Food</th>
-                        <th>Sports</th>
-                    </tr>
-                </thead>
                 <tbody>
                     <tr>
                         <td>
-                            <!-- Task 3: class selector .gallery applied -->
                             <img src="https://thumbs.dreamstime.com/b/rock-concert-party-event-music-festival-lighting-stage-concept-youth-fan-club-people-lifestyle-theme-live-show-149813222.jpg"
-                                 alt="Music Event"
-                                 title="Music Event"
-                                 class="gallery">
-                            <p>Music Event</p>
+                                 alt="Live Rock Concert"
+                                 title="Live Rock Concert"
+                                 class="gallery"
+                                 ondblclick="enlargeImage(this)">
+                            <p>🎸 Live Rock Concert</p>
                         </td>
                         <td>
                             <img src="https://img.magnific.com/free-photo/close-up-appetizing-ramadan-meal_23-2151182445.jpg?semt=ais_hybrid&w=740&q=80"
-                                 alt="Food Event"
-                                 title="Food Event"
-                                 class="gallery">
-                            <p>Food Event</p>
+                                 alt="Food Street Carnival"
+                                 title="Food Street Carnival"
+                                 class="gallery"
+                                 ondblclick="enlargeImage(this)">
+                            <p>🍔 Food Street Carnival</p>
                         </td>
                         <td>
                             <img src="https://www.eventbookings.com/wp-content/uploads/2024/04/Mastering-Sports-Event-Management-A-Comprehensive-Guide-1024x418.jpg"
-                                 alt="Sports Event"
-                                 title="Sports Event"
-                                 class="gallery">
-                            <p>Sports Event</p>
+                                 alt="Basketball Tournament"
+                                 title="Basketball Tournament"
+                                 class="gallery"
+                                 ondblclick="enlargeImage(this)">
+                            <p>🏀 Basketball Tournament</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&auto=format&fit=crop&q=60"
+                                 alt="Jazz Night Showcase"
+                                 title="Jazz Night Showcase"
+                                 class="gallery"
+                                 ondblclick="enlargeImage(this)">
+                            <p>🎷 Jazz Night Showcase</p>
+                        </td>
+                        <td>
+                            <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600&auto=format&fit=crop&q=60"
+                                 alt="Baking Masterclass"
+                                 title="Baking Masterclass"
+                                 class="gallery"
+                                 ondblclick="enlargeImage(this)">
+                            <p>🍰 Baking Masterclass</p>
+                        </td>
+                        <td>
+                            <img src="https://images.unsplash.com/photo-1540747737956-37872404a821?w=600&auto=format&fit=crop&q=60"
+                                 alt="Cricket League Final"
+                                 title="Cricket League Final"
+                                 class="gallery"
+                                 ondblclick="enlargeImage(this)">
+                            <p>🏏 Cricket League Final</p>
                         </td>
                     </tr>
                 </tbody>
             </table>
-
         </section>
 
         <!-- Task 9: Multi-column Community Bulletin (newspaper layout) -->
@@ -156,12 +223,34 @@
             </div>
         </section>
 
+        <!-- Task 7: Video Invite with Media Events -->
+        <section id="promo">
+            <h2>Video Invitation</h2>
+            <div style="max-width: 640px; margin: 0 auto; text-align: center;">
+                <video id="promoVideo" controls width="100%" oncanplay="videoReady()" style="border-radius: 12px; border: 2px solid rgba(255, 255, 255, 0.1);">
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    Your browser does not support HTML video.
+                </video>
+                <p id="videoStatus" style="color: #10b981; font-size: 0.9rem; margin-top: 10px; font-weight: 500;"></p>
+            </div>
+        </section>
+
+        <!-- Task 9: Geolocation for Event Mapping -->
+        <section id="mapping">
+            <h2>Local Event Mapping</h2>
+            <div style="text-align: center; padding: 15px;">
+                <p style="margin-bottom: 20px; color: #cbd5e1;">Locate your position to find local events closest to you.</p>
+                <button type="button" id="geoBtn" onclick="findNearbyEvents()">Find Nearby Events</button>
+                <p id="geoDisplay" style="margin-top: 15px; color: #06b6d4; font-weight: 600;"></p>
+            </div>
+        </section>
+
         <!-- Registration Form -->
         <section id="register">
 
             <h2 style="text-align:center; margin-bottom: 5px;">Event Registration</h2>
 
-            <!-- Task 8: Form has border, padding, margin via style.css -->
+            <!-- Task 8: Form styled via style.css -->
             <form id="registrationForm">
 
                 <label>Name:</label>
@@ -185,7 +274,8 @@
                 <input type="date" required>
 
                 <label>Event Type:</label>
-                <select id="eventType" onchange="showFee()">
+                <!-- LocalStorage Integration: saving & loading preferences -->
+                <select id="eventType" onchange="savePreferences(); showFee();">
                     <option value="Music">Music</option>
                     <option value="Food">Food</option>
                     <option value="Sports">Sports</option>
@@ -193,16 +283,22 @@
 
                 <p id="fee"></p>
 
-                <label>Feedback:</label>
+                <label>Feedback & Message:</label>
                 <textarea id="feedback"
-                          placeholder="Enter feedback"
+                          placeholder="Enter your message here"
                           onkeyup="countChars()"></textarea>
 
                 <p id="count">0 characters</p>
 
-                <button type="submit" onclick="showMessage()">
-                    Register
-                </button>
+                <!-- Clear Preferences Button -->
+                <div style="display: flex; gap: 10px; margin-top: 10px; margin-bottom: 15px;">
+                    <button type="submit" id="registerBtn" style="flex: 1;">
+                        Register
+                    </button>
+                    <button type="button" id="clearPrefsBtn" onclick="clearPreferences()" style="background: rgba(244, 63, 94, 0.2); border: 1px solid rgba(244, 63, 94, 0.4); color: #f43f5e; flex: 1;">
+                        Clear Preferences
+                    </button>
+                </div>
 
                 <output id="result"></output>
 
@@ -219,15 +315,25 @@
 
     </main>
 
-    <!-- Task 3: ID selector #welcomeBanner styled in external CSS -->
-    <div id="welcomeBanner">
-        Welcome User!
-        <span style="color: yellow; font-weight: bold;">✨ Special Offer!</span>
+    <!-- Task 3: ID selector welcomeBanner styled via internal CSS -->
+    <!-- Formatted with red bold special offer span -->
+    <div id="mainHeader">
+        Welcome, Portal Resident!
+        <span style="color: red; font-weight: bold; margin-left: 10px;">✨ Special Offer!</span>
+    </div>
+
+    <!-- Image Enlarge Modal -->
+    <div id="imageModal" class="modal-overlay" onclick="closeModal()">
+        <img id="modalImg" src="" alt="Enlarged View">
     </div>
 
     <!-- Footer -->
     <footer>
         <p>© 2026 Local Community Event Portal</p>
+        <!-- Task 14: Benefit of framework mentioned strictly -->
+        <p style="font-size: 0.75rem; margin-top: 10px; opacity: 0.65;">
+            *Developer Note: Migrating to frameworks like React or Vue allows component-based modular structure and virtual DOM updates for reactive user flows.
+        </p>
     </footer>
 
     <script src="script.js"></script>

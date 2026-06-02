@@ -12,6 +12,9 @@ window.onload = function () {
   // Render event cards on page load (Task 7)
   renderEventCards();
 
+  // Load user preferences from LocalStorage
+  if (typeof loadPreferences === "function") loadPreferences();
+
   // Show default fee (already in script.js, but calling here too for safety)
   if (typeof showFee === "function") showFee();
 };
@@ -643,3 +646,128 @@ function initJQuery() {
  
   console.log("jQuery event handlers initialized.");
 }
+
+/* Image Enlarge Modal Functions (ondblclick) */
+function enlargeImage(imgEl) {
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImg");
+    if (modal && modalImg) {
+        modal.style.display = "flex";
+        modalImg.src = imgEl.src;
+        modalImg.alt = imgEl.alt;
+    }
+}
+
+function closeModal() {
+    const modal = document.getElementById("imageModal");
+    if (modal) {
+        modal.style.display = "none";
+    }
+}
+
+/* Video Invitation Media Event */
+function videoReady() {
+    const status = document.getElementById("videoStatus");
+    if (status) {
+        status.textContent = "🎥 Video is ready to play!";
+    }
+    console.log("Media Event: oncanplay successfully fired for promo video.");
+}
+
+/* Warn User Before Leaving Page (onbeforeunload) */
+window.addEventListener("beforeunload", function (e) {
+    const form = document.getElementById("registrationForm");
+    if (!form) return;
+    
+    const inputs = form.querySelectorAll("input[required], textarea");
+    let isUnfinished = false;
+    for (const input of inputs) {
+        if (input.value.trim() !== "") {
+            isUnfinished = true;
+            break;
+        }
+    }
+    
+    if (isUnfinished) {
+        e.preventDefault();
+        e.returnValue = "You have unsaved changes. Are you sure you want to leave?";
+        return e.returnValue;
+    }
+});
+
+/* Geolocation API Integration */
+function findNearbyEvents() {
+    const display = document.getElementById("geoDisplay");
+    if (!display) return;
+    display.textContent = "⏳ Accessing your location...";
+    
+    if (!navigator.geolocation) {
+        display.textContent = "❌ Geolocation is not supported by your browser.";
+        return;
+    }
+    
+    const options = {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 0
+    };
+    
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            const lat = position.coords.latitude.toFixed(6);
+            const lon = position.coords.longitude.toFixed(6);
+            display.textContent = `📍 Success! Latitude: ${lat}, Longitude: ${lon}`;
+        },
+        (error) => {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    display.textContent = "❌ Location permission was denied.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    display.textContent = "❌ Position unavailable.";
+                    break;
+                case error.TIMEOUT:
+                    display.textContent = "❌ Location request timed out.";
+                    break;
+                default:
+                    display.textContent = "❌ Unknown location error.";
+                    break;
+            }
+        },
+        options
+    );
+}
+
+/* User Preferences Integration (LocalStorage & SessionStorage) */
+function savePreferences() {
+    const select = document.getElementById("eventType");
+    if (select) {
+        localStorage.setItem("preferredEventType", select.value);
+        sessionStorage.setItem("currentSessionEventType", select.value);
+        console.log(`Preferences Saved - Selected event: ${select.value}`);
+    }
+}
+
+function loadPreferences() {
+    const select = document.getElementById("eventType");
+    if (select) {
+        const pref = localStorage.getItem("preferredEventType");
+        if (pref) {
+            select.value = pref;
+            console.log(`Preferences Restored - Pre-selected: ${pref}`);
+            if (typeof showFee === "function") showFee();
+        }
+    }
+}
+
+function clearPreferences() {
+    localStorage.removeItem("preferredEventType");
+    sessionStorage.removeItem("currentSessionEventType");
+    alert("Preferences cleared from both localStorage and sessionStorage!");
+    const select = document.getElementById("eventType");
+    if (select) {
+        select.selectedIndex = 0;
+        if (typeof showFee === "function") showFee();
+    }
+}
+
