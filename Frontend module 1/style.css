@@ -1,447 +1,424 @@
-/* ============================================
-   style.css — Local Community Event Portal
-   External Stylesheet (Task 1: External CSS)
-   ============================================ */
+/* ==========================================================================
+   style.css — Local Community Event Portal Redesign
+   Oceanic Teal, Emerald Green & Slate Glassmorphism Theme
+   ========================================================================== */
 
-/* Task 1 & 2: Import Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Merriweather:ital,wght@0,400;1,300&display=swap');
+/* Import Premium Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
 
-/* -----------------------------------------------
-   Task 3: Universal selector — reset margin/padding
-   ----------------------------------------------- */
+/* Reset and Universal Base */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* -----------------------------------------------
-   Task 5: Typography — body font
-   ----------------------------------------------- */
 body {
-    /* Task 1: External body background defined here */
-    /* Task 4: HEX background color with fallback */
-    background-color: #f0e6ff;
-    background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
-    font-family: 'Poppins', Arial, sans-serif;
+    background-color: #090d16;
+    background-image: radial-gradient(circle at 10% 20%, rgba(6, 182, 212, 0.08) 0%, transparent 40%),
+                      radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 40%);
+    background-attachment: fixed;
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     font-size: 16px;
-    color: #222;
+    color: #e2e8f0;
     line-height: 1.6;
 }
 
-/* -----------------------------------------------
-   Task 3: Element selector — style all <h2>
-   ----------------------------------------------- */
-h2 {
-    /* Task 4: Gradient on section headers */
-    background: linear-gradient(90deg, #e600ff, #7700cc);
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #090d16;
+}
+::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 5px;
+    border: 2px solid #090d16;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #06b6d4;
+}
+
+/* Typography & Headings */
+h1 {
+    font-size: 2.75rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #06b6d4 0%, #10b981 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin: 20px 0 10px;
-}
-
-/* Task 3: Grouping selector — h3 and p together */
-h3, p {
-    font-family: 'Poppins', Arial, sans-serif;
-    color: #333;
-}
-
-/* -----------------------------------------------
-   Task 3: ID selector — #mainHeader / #welcomeBanner
-   ----------------------------------------------- */
-#welcomeBanner {
-    /* Task 4: RGBA background */
-    background-color: rgba(230, 0, 255, 0.88);
-    color: white;
-    padding: 15px 20px;
-    margin-top: 20px;
-    border-radius: 10px;
-    font-size: 1rem;
-    letter-spacing: 0.5px;
-}
-
-/* -----------------------------------------------
-   Task 3: Class selector — .eventCard
-   Task 8: Box model — border, padding, margin
-   ----------------------------------------------- */
-.eventCard {
-    border: 2px solid #e600ff;
-    border-radius: 12px;
-    padding: 20px;
-    margin: 15px;
-    background-color: #fff;
-    box-shadow: 0 4px 12px rgba(230, 0, 255, 0.15);
-    outline: none;
-    transition: outline 0.2s;
-}
-
-.eventCard:focus-within {
-    /* Task 8: Outline for selected/focused element */
-    outline: 3px solid #e600ff;
-}
-
-/* -----------------------------------------------
-   Navigation styles
-   ----------------------------------------------- */
-nav {
-    margin-bottom: 20px;
-    padding: 10px 0;
-}
-
-/* Task 6: List styling — remove bullets from nav */
-nav ul {
-    list-style-type: none;
-    list-style-position: inside;
-    padding: 0;
-    display: flex;
-    gap: 15px;
-}
-
-nav ul li {
-    padding: 5px 0;
-    margin-bottom: 0;
-}
-
-/* Task 6: Link pseudo-classes */
-nav a,
-a {
-    text-decoration: none;
-    color: #7700cc;
-    font-weight: 600;
-    transition: color 0.2s;
-}
-
-a:link {
-    color: #7700cc;
-}
-
-a:visited {
-    color: #b300c7;
-}
-
-a:hover {
-    color: #e600ff;
-    text-decoration: underline;
-}
-
-a:active {
-    color: #4b0082;
-}
-
-/* -----------------------------------------------
-   Task 7: Table styling
-   ----------------------------------------------- */
-table {
-    margin: 30px auto;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th {
-    background-color: #e600ff;
-    color: white;
-    padding: 12px 15px;
-    text-align: center;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-}
-
-td {
-    padding: 25px;
-    text-align: center;
-    border: 1px solid #ddd;
-}
-
-/* Task 7: Zebra striping using nth-child(even) */
-tr:nth-child(even) {
-    background-color: #f9f0ff;
-}
-
-tr:nth-child(odd) {
-    background-color: #ffffff;
-}
-
-tr:hover {
-    background-color: #f0d6ff;
-}
-
-/* -----------------------------------------------
-   Gallery images
-   ----------------------------------------------- */
-.gallery {
-    width: 300px;
-    height: 200px;
-    border-radius: 15px;
-    border: 4px solid #e600ff;
-    transition: transform 0.3s, box-shadow 0.3s;
-    object-fit: cover;
-}
-
-.gallery:hover {
-    transform: scale(1.08);
-    box-shadow: 0 8px 24px rgba(230, 0, 255, 0.35);
-}
-
-/* -----------------------------------------------
-   Task 5: Typography in sections
-   ----------------------------------------------- */
-section {
-    margin: 30px 20px;
-}
-
-section p,
-section li {
-    font-size: 1rem;
-    line-height: 1.8;
-    letter-spacing: 0.2px;
-}
-
-/* Task 5: Text transform on headings */
-h1 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 2rem;
-    font-weight: 700;
-    /* Task 1: inline style example replaced with class */
-    color: #e600ff;
     text-transform: uppercase;
     letter-spacing: 2px;
     text-align: center;
-    margin: 20px 0;
+    margin: 40px 0 20px;
 }
 
-/* -----------------------------------------------
-   Task 8: Form + box model
-   ----------------------------------------------- */
+h2 {
+    font-size: 1.85rem;
+    font-weight: 600;
+    background: linear-gradient(90deg, #06b6d4, #10b981);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 30px 0 15px;
+}
+
+h3, p {
+    color: #cbd5e1;
+}
+
+/* Layout Sections */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section {
+    margin: 50px 0;
+    background: rgba(15, 23, 42, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 35px;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Navigation - Floating Glassmorphic Header */
+nav {
+    position: sticky;
+    top: 15px;
+    z-index: 100;
+    max-width: 1160px;
+    margin: 15px auto 20px;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+nav a,
+a {
+    text-decoration: none;
+    color: #06b6d4;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+nav a {
+    margin: 0 18px;
+    position: relative;
+    padding: 4px 0;
+    letter-spacing: 0.5px;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #06b6d4, #10b981);
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+nav a:hover {
+    color: #10b981;
+}
+
+a:hover {
+    color: #10b981;
+}
+
+/* Event Cards Layout & Styles */
+#eventCardsContainer {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    margin: 30px 0;
+}
+
+.eventCard {
+    background: rgba(30, 41, 59, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 24px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.eventCard:hover {
+    transform: translateY(-6px);
+    background: rgba(30, 41, 59, 0.6);
+    border-color: rgba(6, 182, 212, 0.4);
+    box-shadow: 0 10px 25px rgba(6, 182, 212, 0.15);
+}
+
+.eventCard:focus-within {
+    outline: none;
+    border-color: #06b6d4;
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
+}
+
+/* Buttons */
+button {
+    background: linear-gradient(135deg, #06b6d4 0%, #10b981 100%);
+    color: #0f172a;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 10px rgba(6, 182, 212, 0.2);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(6, 182, 212, 0.35);
+    filter: brightness(1.1);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:disabled {
+    background: #334155;
+    color: #64748b;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Form Styles */
 form {
-    background-color: #ffffff;
-    width: 500px;
-    padding: 25px;
-    margin: 30px auto;
-    border-radius: 15px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-    /* Task 8: border and outline demo */
-    border: 1px solid #e0c0f0;
-}
-
-form h2 {
-    text-align: center;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 550px;
+    padding: 35px;
+    margin: 30px auto 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 label {
-    font-weight: bold;
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.95rem;
+    font-weight: 500;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 5px;
+    letter-spacing: 0.5px;
 }
 
 input,
 select,
 textarea {
     width: 100%;
-    padding: 12px;
-    margin-top: 8px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    font-family: 'Poppins', sans-serif;
-    box-sizing: border-box;
-    transition: outline 0.2s, border 0.2s;
+    padding: 12px 16px;
+    margin-top: 5px;
+    margin-bottom: 22px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(15, 23, 42, 0.6);
+    color: #f8fafc;
+    font-size: 15px;
+    font-family: inherit;
+    transition: all 0.3s ease;
 }
 
-/* Task 8: Outline to highlight focused form fields */
+input::placeholder,
+textarea::placeholder {
+    color: #475569;
+}
+
 input:focus,
 select:focus,
 textarea:focus {
-    outline: 3px solid #e600ff;
-    border-color: #e600ff;
+    outline: none;
+    border-color: #06b6d4;
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2);
+    background-color: rgba(15, 23, 42, 0.85);
 }
 
 textarea {
-    height: 100px;
+    height: 120px;
     resize: vertical;
 }
 
-/* -----------------------------------------------
-   Task 2: Style for main CTA button
-   ----------------------------------------------- */
-button {
-    background-color: #e600ff;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 15px;
-    font-family: 'Poppins', sans-serif;
+/* Dynamic Filter bar styling */
+#events div[style*="display:flex"] {
+    background: rgba(30, 41, 59, 0.35);
+    padding: 15px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: 25px;
+}
+
+/* Custom Table Styling */
+table {
+    margin: 30px 0;
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+th {
+    background: linear-gradient(90deg, #06b6d4, #10b981);
+    color: #0f172a;
+    padding: 15px 20px;
     font-weight: 600;
-    letter-spacing: 0.5px;
-    transition: background-color 0.2s, transform 0.1s;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
 }
 
-button:hover {
-    background-color: #b300c7;
-    transform: translateY(-1px);
+td {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(15, 23, 42, 0.3);
 }
 
-/* -----------------------------------------------
-   Task 6: List styling
-   ----------------------------------------------- */
-ul {
-    list-style-type: disc;
-    list-style-position: inside;
-    padding-left: 20px;
+tr:nth-child(even) td {
+    background: rgba(15, 23, 42, 0.55);
 }
 
-ul li {
-    padding: 6px 0;
-    margin-bottom: 5px;
+tr:hover td {
+    background: rgba(6, 182, 212, 0.08);
+    transition: background 0.25s ease;
 }
 
-ol li {
-    padding: 6px 0;
-    margin-bottom: 5px;
+/* Gallery Styling */
+.gallery {
+    width: 100%;
+    max-width: 320px;
+    height: 200px;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    object-fit: cover;
 }
 
-/* -----------------------------------------------
-   Task 9: Multi-column news/bulletin layout
-   ----------------------------------------------- */
+.gallery:hover {
+    transform: scale(1.05);
+    border-color: #06b6d4;
+    box-shadow: 0 10px 25px rgba(6, 182, 212, 0.25);
+}
+
+/* Bulletin / Newspaper column view */
 .news-bulletin {
     column-count: 2;
-    column-gap: 30px;
-    column-rule: 1px solid #ccc;
-    background: #fff;
-    padding: 20px 30px;
-    border-radius: 12px;
-    margin: 30px 20px;
-    font-family: 'Merriweather', serif;
-    font-size: 0.95rem;
-    line-height: 1.9;
-    color: #333;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    column-gap: 40px;
+    column-rule: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(30, 41, 59, 0.25);
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #cbd5e1;
 }
 
 .news-bulletin h3 {
     column-span: all;
     text-align: center;
-    font-size: 1.3rem;
-    font-family: 'Poppins', sans-serif;
+    font-size: 1.45rem;
+    font-family: 'Outfit', sans-serif;
     font-weight: 700;
-    color: #e600ff;
-    margin-bottom: 15px;
+    color: #10b981;
+    margin-bottom: 20px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
 }
 
-/* -----------------------------------------------
-   Task 8: visibility vs display demo classes
-   ----------------------------------------------- */
-.hidden-visibility {
-    visibility: hidden;  /* hides but keeps space */
+/* Welcome Banner */
+#welcomeBanner {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(16, 185, 129, 0.2) 100%);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    color: #f8fafc;
+    padding: 16px 24px;
+    margin-top: 25px;
+    border-radius: 12px;
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(6, 182, 212, 0.1);
 }
 
-.hidden-display {
-    display: none;       /* hides and removes space */
-}
-
-/* -----------------------------------------------
-   Footer
-   ----------------------------------------------- */
+/* Footer Styling */
 footer {
     text-align: center;
-    padding: 20px;
-    background-color: rgba(230, 0, 255, 0.1);
-    margin-top: 40px;
+    padding: 30px;
+    background-color: rgba(9, 13, 22, 0.8);
+    margin-top: 60px;
     font-size: 0.85rem;
-    color: #666;
-    border-top: 2px solid #e600ff;
+    color: #64748b;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* -----------------------------------------------
-   Task 10: Responsive Media Queries
-   ----------------------------------------------- */
+/* Media Queries for Responsiveness */
 @media (max-width: 768px) {
-
-    /* Stack nav links vertically */
     nav {
-        display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 12px;
+        top: 0;
+        border-radius: 0 0 16px 16px;
     }
-
+    
     nav a {
-        display: block;
         margin: 5px 0;
     }
-
-    nav ul {
-        flex-direction: column;
-    }
-
-    /* Smaller headings */
+    
     h1 {
-        font-size: 1.4rem;
-        letter-spacing: 1px;
+        font-size: 1.95rem;
     }
 
     h2 {
-        font-size: 1.2rem;
+        font-size: 1.45rem;
     }
 
-    /* Reduce image sizes */
-    .gallery {
-        width: 100%;
-        height: 150px;
+    .news-bulletin {
+        column-count: 1;
+        padding: 20px;
     }
 
-    /* Stack table cells */
-    table, tr, td {
+    form {
+        padding: 20px;
+    }
+
+    table, tbody, tr, td {
         display: block;
         width: 100%;
     }
 
+    thead {
+        display: none;
+    }
+
     td {
-        padding: 15px 10px;
-    }
-
-    /* Form takes full width */
-    form {
-        width: 95vw;
-        padding: 15px;
-        margin: 20px auto;
-    }
-
-    /* Multi-column collapses to 1 on mobile */
-    .news-bulletin {
-        column-count: 1;
-    }
-
-    /* Flexible font sizes */
-    body {
-        font-size: 14px;
-    }
-
-    section {
-        margin: 20px 10px;
-    }
-
-    #welcomeBanner {
-        font-size: 0.9rem;
-        padding: 12px;
-    }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-    /* Tablet layout */
-    form {
-        width: 80vw;
-    }
-
-    .gallery {
-        width: 220px;
-        height: 160px;
+        padding: 20px 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 }
