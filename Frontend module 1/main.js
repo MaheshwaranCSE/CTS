@@ -248,7 +248,7 @@ function renderEventCards() {
     card.style.cssText = "min-width:220px; flex:1;";
 
     card.innerHTML = `
-      <h3 style="color:#06b6d4; margin-bottom:6px;">${event.name}</h3>
+      <h3 style="color:#0056b3; margin-bottom:6px;">${event.name}</h3>
       <p>📅 <strong>Date:</strong> ${event.date}</p>
       <p>🏷️ <strong>Category:</strong> ${event.category}</p>
       <p>📍 <strong>Location:</strong> ${event.location}</p>
@@ -406,7 +406,7 @@ async function fetchEventsWithAsync() {
     spinner = document.createElement("p");
     spinner.id = "loadingSpinner";
     spinner.textContent = "⏳ Loading events...";
-    spinner.style.cssText = "text-align:center; color:#06b6d4; font-weight:bold; margin:10px 0;";
+    spinner.style.cssText = "text-align:center; color:#0056b3; font-weight:bold; margin:10px 0;";
     eventsSection.appendChild(spinner);
   }
 
@@ -560,7 +560,7 @@ async function postRegistrationData(userData) {
     // Show success message
     if (resultEl) {
       resultEl.textContent = `✅ Registration confirmed for ${userData.name}! (ID: ${data.id})`;
-      resultEl.style.color = "#10b981";
+      resultEl.style.color = "green";
     }
   } catch (error) {
     console.error("❌ POST failed:", error.message);
@@ -568,7 +568,7 @@ async function postRegistrationData(userData) {
     // Show failure message
     if (resultEl) {
       resultEl.textContent = "❌ Registration failed. Please try again.";
-      resultEl.style.color = "#f43f5e";
+      resultEl.style.color = "red";
     }
   }
 }
