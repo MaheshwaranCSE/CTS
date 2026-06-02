@@ -198,6 +198,11 @@ button:disabled {
 /* -----------------------------------------------
    Task 8: Form + Outline control
    ----------------------------------------------- */
+#register {
+    background-color: #e8f4fd; /* Pale blue background */
+    border: 2px solid #0056b3;  /* Solid blue border */
+}
+
 form {
     background-color: #f9f9f9;
     border: 2px solid #333333;
